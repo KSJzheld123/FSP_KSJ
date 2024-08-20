@@ -1,0 +1,80 @@
+DROP DATABASE FSP_KSJ;
+CREATE DATABASE FSP_KSJ;
+USE FSP_KSJ;
+
+CREATE TABLE `member`(
+id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+memberRegDate DATETIME NOT NULL,
+memberId VARCHAR(20) NOT NULL UNIQUE KEY,
+memberPw VARCHAR(100) NOT NULL,
+memberNickName VARCHAR(20) NOT NULL,
+memberName VARCHAR(20) NOT NULL,
+memberNum VARCHAR(20) NOT NULL UNIQUE KEY,
+memberEmail VARCHAR(50) NOT NULL UNIQUE KEY
+);
+
+CREATE TABLE article (
+id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+articleRegDate DATETIME NOT NULL,
+articleUpdateDate DATETIME NOT NULL,
+articleTitle TEXT NOT NULL,
+articleBody TEXT NOT NULL,
+articleWriterId INT(10) NOT NULL,
+articleWriterName VARCHAR(20) NOT NULL,
+articleViewCount INT(10) NOT NULL,
+articleLikeThis INT(10) NOT NULL
+);
+
+INSERT INTO `member` SET memberRegDate=NOW(),
+memberId="test1",
+memberPw="test1",
+memberNickName="test1",
+memberName="test1",
+memberNum="01023452345",
+memberEmail="test1@test1.test1";
+
+INSERT INTO `member` SET memberRegDate=NOW(),
+memberId="test2",
+memberPw="test2",
+memberNickName="test2",
+memberName="test2",
+memberNum="01034563456",
+memberEmail="test2@test2.test2";
+
+INSERT INTO `member` SET memberRegDate=NOW(),
+memberId="test3",
+memberPw="test3",
+memberNickName="test3",
+memberName="test3",
+memberNum="01012341234",
+memberEmail="test3@test3.test3";
+
+INSERT INTO article SET articleRegDate=NOW(),
+articleUpdateDate=NOW(),
+articleTitle="test1",
+articleBody="test1",
+articleWriterId=1,
+articleWriterName="test1",
+articleViewCount=1,
+articleLikeThis=1;
+
+INSERT INTO article SET articleRegDate=NOW(),
+articleUpdateDate=NOW(),
+articleTitle="test2",
+articleBody="test2",
+articleWriterId=2,
+articleWriterName="test2",
+articleViewCount=1,
+articleLikeThis=1;
+
+INSERT INTO article SET articleRegDate=NOW(),
+articleUpdateDate=NOW(),
+articleTitle="test3",
+articleBody="test3",
+articleWriterId=3,
+articleWriterName="test3",
+articleViewCount=1,
+articleLikeThis=1;
+
+SELECT * FROM article;
+SELECT * FROM `member`;
