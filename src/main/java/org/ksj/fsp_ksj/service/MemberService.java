@@ -1,22 +1,20 @@
 package org.ksj.fsp_ksj.service;
 
+import org.ksj.fsp_ksj.ResultData;
 import org.ksj.fsp_ksj.vo.Member;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Service
 public class MemberService {
 
-    public String joinMember(String memberId, String memberPw, String memberNickName,
-                                 String memberName, String memberNum, String memberEmail) {
-        String memberRegDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    @Autowired
+    private MemberMapper memberMapper;
 
-        Member member = new Member(memberRegDate, memberId, memberPw, memberNickName, memberName, memberNum, memberEmail);
-
-        String sql = "INSERT INTO `member` SET memberRegDate=?, memberId=?, memberPw=?, memberNickName=?, memberName=?, memberNum=?, memberEmail=?";
-
-        return "회원가입이 완료되었습니다!";
+    public ResultData join(String memberId, String memberPw, String memberNickName, String memberName, String memberNum, String memberEmail) {
+        // 유효성 검사 (생략)
+        Member member = new Member(memberId, memberPw, memberNickName, memberName, memberNum, memberEmail);
+        memberMapper.insertMember(member);
+        return ResultData.newData("S-1", "회원가입 성공", member.getId());
     }
 }
